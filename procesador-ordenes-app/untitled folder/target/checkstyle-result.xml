@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="10.3.2">
+<file name="/Users/agustinprieto/Desktop/final-p2/pom.xml">
+</file>
+<file name="/Users/agustinprieto/Desktop/final-p2/README.md">
+</file>
+<file name="/Users/agustinprieto/Desktop/final-p2/src/main/resources/i18n/messages.properties">
+</file>
+<file name="/Users/agustinprieto/Desktop/final-p2/src/main/resources/.h2.server.properties">
+</file>
+<file name="/Users/agustinprieto/Desktop/final-p2/src/test/resources/testcontainers.properties">
+</file>
+<file name="/Users/agustinprieto/Desktop/final-p2/src/test/resources/junit-platform.properties">
+</file>
+<file name="/Users/agustinprieto/Desktop/final-p2/src/test/resources/i18n/messages_en.properties">
+</file>
+</checkstyle>

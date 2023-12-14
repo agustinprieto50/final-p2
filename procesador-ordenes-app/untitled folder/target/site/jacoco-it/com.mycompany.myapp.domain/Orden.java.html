@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Orden.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Final P 2</a> &gt; <a href="index.source.html" class="el_package">com.mycompany.myapp.domain</a> &gt; <span class="el_source">Orden.java</span></div><h1>Orden.java</h1><pre class="source lang-java linenums">package com.mycompany.myapp.domain;
+
+import java.io.Serializable;
+import javax.persistence.*;
+
+/**
+ * A Orden.
+ */
+@Entity
+@Table(name = &quot;orden&quot;)
+@SuppressWarnings(&quot;common-java:DuplicatedBlocks&quot;)
+<span class="fc" id="L12">public class Orden implements Serializable {</span>
+
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = &quot;sequenceGenerator&quot;)
+    @SequenceGenerator(name = &quot;sequenceGenerator&quot;)
+    @Column(name = &quot;id&quot;)
+    private Long id;
+
+    @Column(name = &quot;cliente&quot;)
+    private Integer cliente;
+
+    @Column(name = &quot;accion_id&quot;)
+    private Integer accionId;
+
+    @Column(name = &quot;accion&quot;)
+    private String accion;
+
+    @Column(name = &quot;operacion&quot;)
+    private String operacion;
+
+    @Column(name = &quot;precio&quot;)
+    private Float precio;
+
+    @Column(name = &quot;cantidad&quot;)
+    private Integer cantidad;
+
+    @Column(name = &quot;fecha_operacion&quot;)
+    private String fechaOperacion;
+
+    @Column(name = &quot;modo&quot;)
+    private String modo;
+
+    @Column(name = &quot;stado&quot;)
+    private String stado;
+
+    // jhipster-needle-entity-add-field - JHipster will add fields here
+
+    public Long getId() {
+<span class="nc" id="L52">        return this.id;</span>
+    }
+
+    public Orden id(Long id) {
+<span class="nc" id="L56">        this.setId(id);</span>
+<span class="nc" id="L57">        return this;</span>
+    }
+
+    public void setId(Long id) {
+<span class="nc" id="L61">        this.id = id;</span>
+<span class="nc" id="L62">    }</span>
+
+    public Integer getCliente() {
+<span class="nc" id="L65">        return this.cliente;</span>
+    }
+
+    public Orden cliente(Integer cliente) {
+<span class="nc" id="L69">        this.setCliente(cliente);</span>
+<span class="nc" id="L70">        return this;</span>
+    }
+
+    public void setCliente(Integer cliente) {
+<span class="nc" id="L74">        this.cliente = cliente;</span>
+<span class="nc" id="L75">    }</span>
+
+    public Integer getAccionId() {
+<span class="nc" id="L78">        return this.accionId;</span>
+    }
+
+    public Orden accionId(Integer accionId) {
+<span class="nc" id="L82">        this.setAccionId(accionId);</span>
+<span class="nc" id="L83">        return this;</span>
+    }
+
+    public void setAccionId(Integer accionId) {
+<span class="nc" id="L87">        this.accionId = accionId;</span>
+<span class="nc" id="L88">    }</span>
+
+    public String getAccion() {
+<span class="nc" id="L91">        return this.accion;</span>
+    }
+
+    public Orden accion(String accion) {
+<span class="nc" id="L95">        this.setAccion(accion);</span>
+<span class="nc" id="L96">        return this;</span>
+    }
+
+    public void setAccion(String accion) {
+<span class="nc" id="L100">        this.accion = accion;</span>
+<span class="nc" id="L101">    }</span>
+
+    public String getOperacion() {
+<span class="nc" id="L104">        return this.operacion;</span>
+    }
+
+    public Orden operacion(String operacion) {
+<span class="nc" id="L108">        this.setOperacion(operacion);</span>
+<span class="nc" id="L109">        return this;</span>
+    }
+
+    public void setOperacion(String operacion) {
+<span class="nc" id="L113">        this.operacion = operacion;</span>
+<span class="nc" id="L114">    }</span>
+
+    public Float getPrecio() {
+<span class="nc" id="L117">        return this.precio;</span>
+    }
+
+    public Orden precio(Float precio) {
+<span class="nc" id="L121">        this.setPrecio(precio);</span>
+<span class="nc" id="L122">        return this;</span>
+    }
+
+    public void setPrecio(Float precio) {
+<span class="nc" id="L126">        this.precio = precio;</span>
+<span class="nc" id="L127">    }</span>
+
+    public Integer getCantidad() {
+<span class="nc" id="L130">        return this.cantidad;</span>
+    }
+
+    public Orden cantidad(Integer cantidad) {
+<span class="nc" id="L134">        this.setCantidad(cantidad);</span>
+<span class="nc" id="L135">        return this;</span>
+    }
+
+    public void setCantidad(Integer cantidad) {
+<span class="nc" id="L139">        this.cantidad = cantidad;</span>
+<span class="nc" id="L140">    }</span>
+
+    public String getFechaOperacion() {
+<span class="nc" id="L143">        return this.fechaOperacion;</span>
+    }
+
+    public Orden fechaOperacion(String fechaOperacion) {
+<span class="nc" id="L147">        this.setFechaOperacion(fechaOperacion);</span>
+<span class="nc" id="L148">        return this;</span>
+    }
+
+    public void setFechaOperacion(String fechaOperacion) {
+<span class="nc" id="L152">        this.fechaOperacion = fechaOperacion;</span>
+<span class="nc" id="L153">    }</span>
+
+    public String getModo() {
+<span class="nc" id="L156">        return this.modo;</span>
+    }
+
+    public Orden modo(String modo) {
+<span class="nc" id="L160">        this.setModo(modo);</span>
+<span class="nc" id="L161">        return this;</span>
+    }
+
+    public void setModo(String modo) {
+<span class="nc" id="L165">        this.modo = modo;</span>
+<span class="nc" id="L166">    }</span>
+
+    public String getStado() {
+<span class="nc" id="L169">        return this.stado;</span>
+    }
+
+    public Orden stado(String stado) {
+<span class="nc" id="L173">        this.setStado(stado);</span>
+<span class="nc" id="L174">        return this;</span>
+    }
+
+    public void setStado(String stado) {
+<span class="nc" id="L178">        this.stado = stado;</span>
+<span class="nc" id="L179">    }</span>
+
+    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
+
+    @Override
+    public boolean equals(Object o) {
+<span class="nc bnc" id="L185" title="All 2 branches missed.">        if (this == o) {</span>
+<span class="nc" id="L186">            return true;</span>
+        }
+<span class="nc bnc" id="L188" title="All 2 branches missed.">        if (!(o instanceof Orden)) {</span>
+<span class="nc" id="L189">            return false;</span>
+        }
+<span class="nc bnc" id="L191" title="All 4 branches missed.">        return id != null &amp;&amp; id.equals(((Orden) o).id);</span>
+    }
+
+    @Override
+    public int hashCode() {
+        // see https://vladmihalcea.com/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/
+<span class="nc" id="L197">        return getClass().hashCode();</span>
+    }
+
+    // prettier-ignore
+    @Override
+    public String toString() {
+<span class="nc" id="L203">        return &quot;Orden{&quot; +</span>
+<span class="nc" id="L204">            &quot;id=&quot; + getId() +</span>
+<span class="nc" id="L205">            &quot;, cliente=&quot; + getCliente() +</span>
+<span class="nc" id="L206">            &quot;, accionId=&quot; + getAccionId() +</span>
+<span class="nc" id="L207">            &quot;, accion='&quot; + getAccion() + &quot;'&quot; +</span>
+<span class="nc" id="L208">            &quot;, operacion='&quot; + getOperacion() + &quot;'&quot; +</span>
+<span class="nc" id="L209">            &quot;, precio=&quot; + getPrecio() +</span>
+<span class="nc" id="L210">            &quot;, cantidad=&quot; + getCantidad() +</span>
+<span class="nc" id="L211">            &quot;, fechaOperacion='&quot; + getFechaOperacion() + &quot;'&quot; +</span>
+<span class="nc" id="L212">            &quot;, modo='&quot; + getModo() + &quot;'&quot; +</span>
+<span class="nc" id="L213">            &quot;, stado='&quot; + getStado() + &quot;'&quot; +</span>
+            &quot;}&quot;;
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
