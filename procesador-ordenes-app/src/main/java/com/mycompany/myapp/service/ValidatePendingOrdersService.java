@@ -4,7 +4,6 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -43,12 +42,9 @@ public class ValidatePendingOrdersService {
             Long clienteId = (Long) ordenObject.get("cliente");
             String accionCodigo = (String) ordenObject.get("accion");
             Long accionId = (Long) ordenObject.get("accionId");
-            Long cantidad = (Long) ordenObject.get("cantidad");
-            String operacion = (String) ordenObject.get("operacion");
 
             boolean clientExists = getClientService.getClient(clienteId);
             boolean stockExists = getStockService.getStock(accionCodigo, accionId);
-            
 
             if (clientExists && stockExists) {
                 ordenObject.put("status", "scheduled");

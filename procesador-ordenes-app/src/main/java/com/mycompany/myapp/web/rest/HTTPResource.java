@@ -1,18 +1,22 @@
 package com.mycompany.myapp.web.rest;
 
 
+import java.time.LocalTime;
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mycompany.myapp.service.CreateOrdenService;
 import com.mycompany.myapp.service.GetPendingOrdersService;
 import com.mycompany.myapp.service.ValidatePendingOrdersService;
+
+
 import com.mycompany.myapp.service.OrdersValidationResultService;
 import com.mycompany.myapp.service.ProcessOrdersService;
 
@@ -28,41 +32,67 @@ public class HTTPResource {
     private ValidatePendingOrdersService validatePendingOrdersService;
     private OrdersValidationResultService ordersValidationResultService;
     private ProcessOrdersService processOrdersService;
+    private CreateOrdenService createOrdenService;
 
 
     public HTTPResource(
         GetPendingOrdersService getPendingOrdersService, 
         ValidatePendingOrdersService validatePendingOrdersService, 
         OrdersValidationResultService ordersValidationResultService,
-        ProcessOrdersService processOrdersService
+        ProcessOrdersService processOrdersService,
+        CreateOrdenService createOrdenService
         ) {
         this.getPendingOrdersService = getPendingOrdersService;
         this.validatePendingOrdersService = validatePendingOrdersService;
         this.ordersValidationResultService = ordersValidationResultService;
         this.processOrdersService = processOrdersService;
+        this.createOrdenService = createOrdenService;
      }
 
 
     /**
      * GET getOrder
      */
-    @GetMapping("/get-order")
-    public JSONArray getOrder() {
+    @GetMapping("/app")
+    public JSONArray app() {
+        // Obtenemos las ordenes pendientes. La funcion devuelve un objeto del tipo OrdersValidationResource, que tiene dos atributos.
         JSONArray ordersArray = getPendingOrdersService.getPendingOrders();
         OrdersValidationResultService allOrders = validatePendingOrdersService.validatePendingOrders(ordersArray);
-        System.out.println(allOrders.getValidatedOrders());
         JSONArray validatedOrders = allOrders.getValidatedOrders();
+        JSONArray incompleteOrders = allOrders.getIncompleteOrders();
+
+        JSONArray ordersToSaveNow = new JSONArray();
+
+        // Creamos los records en la entidad Ordenes. 
+        createOrdenService.saveAllFromJsonArray(incompleteOrders);
+
+        // Procesa aquellas ordenes con modo "AHORA"
+        // Si el modo es AHORA y la hora es entre las 9 y las 18, entonces procesa la orden.
+        // Si no la agrega a la lista de ordenes para ser guardada en la base de datos con status: scheduled.
         JSONArray ordersToProcess = new JSONArray();
         for (Object orden : validatedOrders) {
             JSONObject ordenObject = (JSONObject) orden;
             String modo = (String) ordenObject.get("modo");
             if (modo.equals("AHORA")) {
-                ordersToProcess.add(orden);
+                LocalTime currentTime = LocalTime.now();
+                int currentHour = currentTime.getHour();
+                boolean isBetween9And6 = currentHour >= 9 && currentHour < 18;
+                if (isBetween9And6) {
+                    ordersToProcess.add(orden);
+                } else {
+                    ordersToSaveNow.add(orden);
+                }
+
+            } else {
+                ordersToSaveNow.add(orden);
             }
         }
-        processOrdersService.processOrders(ordersToProcess);
+        createOrdenService.saveAllFromJsonArray(ordersToSaveNow);
+        JSONArray processedOrders = processOrdersService.processOrders(ordersToProcess);
+        createOrdenService.saveAllFromJsonArray(processedOrders);
 
-        return ordersToProcess;
+
+        return processedOrders;
     }
 
     /**

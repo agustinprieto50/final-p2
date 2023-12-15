@@ -1,12 +1,12 @@
 
 
 entity Orden {
-  cliente Integer,
-  accionId Integer,
+  cliente Long,
+  accionId Long,
   accion String,
   operacion String,
-  precio Float,
-  cantidad Integer,
+  precio Double,
+  cantidad Long,
   fechaOperacion String,
   modo String,
   estado String

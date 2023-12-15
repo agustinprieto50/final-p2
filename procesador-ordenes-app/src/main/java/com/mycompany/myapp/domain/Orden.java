@@ -20,10 +20,10 @@ public class Orden implements Serializable {
     private Long id;
 
     @Column(name = "cliente")
-    private Integer cliente;
+    private Long cliente;
 
     @Column(name = "accion_id")
-    private Integer accionId;
+    private Long accionId;
 
     @Column(name = "accion")
     private String accion;
@@ -32,10 +32,10 @@ public class Orden implements Serializable {
     private String operacion;
 
     @Column(name = "precio")
-    private Float precio;
+    private Double precio;
 
     @Column(name = "cantidad")
-    private Integer cantidad;
+    private Long cantidad;
 
     @Column(name = "fecha_operacion")
     private String fechaOperacion;
@@ -61,29 +61,29 @@ public class Orden implements Serializable {
         this.id = id;
     }
 
-    public Integer getCliente() {
+    public Long getCliente() {
         return this.cliente;
     }
 
-    public Orden cliente(Integer cliente) {
+    public Orden cliente(Long cliente) {
         this.setCliente(cliente);
-        return this; 
+        return this;
     }
 
-    public void setCliente(Integer cliente) {
+    public void setCliente(Long cliente) {
         this.cliente = cliente;
     }
 
-    public Integer getAccionId() {
+    public Long getAccionId() {
         return this.accionId;
     }
 
-    public Orden accionId(Integer accionId) {
+    public Orden accionId(Long accionId) {
         this.setAccionId(accionId);
         return this;
     }
 
-    public void setAccionId(Integer accionId) {
+    public void setAccionId(Long accionId) {
         this.accionId = accionId;
     }
 
@@ -113,29 +113,29 @@ public class Orden implements Serializable {
         this.operacion = operacion;
     }
 
-    public Float getPrecio() {
+    public Double getPrecio() {
         return this.precio;
     }
 
-    public Orden precio(Float precio) {
+    public Orden precio(Double precio) {
         this.setPrecio(precio);
         return this;
     }
 
-    public void setPrecio(Float precio) {
+    public void setPrecio(Double precio) {
         this.precio = precio;
     }
 
-    public Integer getCantidad() {
+    public Long getCantidad() {
         return this.cantidad;
     }
 
-    public Orden cantidad(Integer cantidad) {
+    public Orden cantidad(Long cantidad) {
         this.setCantidad(cantidad);
         return this;
     }
 
-    public void setCantidad(Integer cantidad) {
+    public void setCantidad(Long cantidad) {
         this.cantidad = cantidad;
     }
 

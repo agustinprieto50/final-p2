@@ -37,8 +37,7 @@ public class GetPendingOrdersService {
             ordersArray = (JSONArray) jsonObject.get("ordenes");
             return ordersArray;
 
-             // Now you can work with the JSONObject
-             // ...
+       
          } catch (ParseException e) {
             e.printStackTrace();
             return null;

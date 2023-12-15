@@ -29,11 +29,11 @@ import org.springframework.transaction.annotation.Transactional;
 @WithMockUser
 class OrdenResourceIT {
 
-    private static final Integer DEFAULT_CLIENTE = 1;
-    private static final Integer UPDATED_CLIENTE = 2;
+    private static final Long DEFAULT_CLIENTE = 1L;
+    private static final Long UPDATED_CLIENTE = 2L;
 
-    private static final Integer DEFAULT_ACCION_ID = 1;
-    private static final Integer UPDATED_ACCION_ID = 2;
+    private static final Long DEFAULT_ACCION_ID = 1L;
+    private static final Long UPDATED_ACCION_ID = 2L;
 
     private static final String DEFAULT_ACCION = "AAAAAAAAAA";
     private static final String UPDATED_ACCION = "BBBBBBBBBB";
@@ -41,11 +41,11 @@ class OrdenResourceIT {
     private static final String DEFAULT_OPERACION = "AAAAAAAAAA";
     private static final String UPDATED_OPERACION = "BBBBBBBBBB";
 
-    private static final Float DEFAULT_PRECIO = 1F;
-    private static final Float UPDATED_PRECIO = 2F;
+    private static final Double DEFAULT_PRECIO = 1D;
+    private static final Double UPDATED_PRECIO = 2D;
 
-    private static final Integer DEFAULT_CANTIDAD = 1;
-    private static final Integer UPDATED_CANTIDAD = 2;
+    private static final Long DEFAULT_CANTIDAD = 1L;
+    private static final Long UPDATED_CANTIDAD = 2L;
 
     private static final String DEFAULT_FECHA_OPERACION = "AAAAAAAAAA";
     private static final String UPDATED_FECHA_OPERACION = "BBBBBBBBBB";
@@ -172,12 +172,12 @@ class OrdenResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(orden.getId().intValue())))
-            .andExpect(jsonPath("$.[*].cliente").value(hasItem(DEFAULT_CLIENTE)))
-            .andExpect(jsonPath("$.[*].accionId").value(hasItem(DEFAULT_ACCION_ID)))
+            .andExpect(jsonPath("$.[*].cliente").value(hasItem(DEFAULT_CLIENTE.intValue())))
+            .andExpect(jsonPath("$.[*].accionId").value(hasItem(DEFAULT_ACCION_ID.intValue())))
             .andExpect(jsonPath("$.[*].accion").value(hasItem(DEFAULT_ACCION)))
             .andExpect(jsonPath("$.[*].operacion").value(hasItem(DEFAULT_OPERACION)))
             .andExpect(jsonPath("$.[*].precio").value(hasItem(DEFAULT_PRECIO.doubleValue())))
-            .andExpect(jsonPath("$.[*].cantidad").value(hasItem(DEFAULT_CANTIDAD)))
+            .andExpect(jsonPath("$.[*].cantidad").value(hasItem(DEFAULT_CANTIDAD.intValue())))
             .andExpect(jsonPath("$.[*].fechaOperacion").value(hasItem(DEFAULT_FECHA_OPERACION)))
             .andExpect(jsonPath("$.[*].modo").value(hasItem(DEFAULT_MODO)))
             .andExpect(jsonPath("$.[*].estado").value(hasItem(DEFAULT_ESTADO)));
@@ -195,12 +195,12 @@ class OrdenResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(orden.getId().intValue()))
-            .andExpect(jsonPath("$.cliente").value(DEFAULT_CLIENTE))
-            .andExpect(jsonPath("$.accionId").value(DEFAULT_ACCION_ID))
+            .andExpect(jsonPath("$.cliente").value(DEFAULT_CLIENTE.intValue()))
+            .andExpect(jsonPath("$.accionId").value(DEFAULT_ACCION_ID.intValue()))
             .andExpect(jsonPath("$.accion").value(DEFAULT_ACCION))
             .andExpect(jsonPath("$.operacion").value(DEFAULT_OPERACION))
             .andExpect(jsonPath("$.precio").value(DEFAULT_PRECIO.doubleValue()))
-            .andExpect(jsonPath("$.cantidad").value(DEFAULT_CANTIDAD))
+            .andExpect(jsonPath("$.cantidad").value(DEFAULT_CANTIDAD.intValue()))
             .andExpect(jsonPath("$.fechaOperacion").value(DEFAULT_FECHA_OPERACION))
             .andExpect(jsonPath("$.modo").value(DEFAULT_MODO))
             .andExpect(jsonPath("$.estado").value(DEFAULT_ESTADO));

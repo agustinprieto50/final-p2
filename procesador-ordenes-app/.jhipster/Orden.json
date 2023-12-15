@@ -7,11 +7,11 @@
   "fields": [
     {
       "fieldName": "cliente",
-      "fieldType": "Integer"
+      "fieldType": "Long"
     },
     {
       "fieldName": "accionId",
-      "fieldType": "Integer"
+      "fieldType": "Long"
     },
     {
       "fieldName": "accion",
@@ -23,11 +23,11 @@
     },
     {
       "fieldName": "precio",
-      "fieldType": "Float"
+      "fieldType": "Double"
     },
     {
       "fieldName": "cantidad",
-      "fieldType": "Integer"
+      "fieldType": "Long"
     },
     {
       "fieldName": "fechaOperacion",

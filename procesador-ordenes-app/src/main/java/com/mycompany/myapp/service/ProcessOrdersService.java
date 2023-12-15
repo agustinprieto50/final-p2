@@ -59,20 +59,24 @@ public class ProcessOrdersService {
                     ordenToReport.put("operacionExitosa", true);
                     ordenToReport.put("operacionObservaciones", "ok");
                     ordersToReportArray.add(ordenToReport);
-                    ordenObject.replace("estado", "operacionExitosa");
+                    ordenObject.put("status", "operacionExitosa");
                 } else {
-                    ordenObject.replace("estado", "operacionFallida");
+                    ordenObject.put("status", "operacionFallida");
                 }
             } else {
                 ordenToReport.put("operacionExitosa", true);
                 ordenToReport.put("operacionObservaciones", "ok");
                 ordersToReportArray.add(ordenToReport);
+                ordenObject.put("status", "operacionExitosa");
+
             }
 
         }
         JSONObject ordersToReport = new JSONObject();
         ordersToReport.put("ordenes", ordersToReportArray);
         reportOrderService.reportOrden(ordersToReport);
+        System.out.println(orders + " ***");
+         // aca deberia editar el estado de las ordenes las ordenes
         return orders;
     }
 

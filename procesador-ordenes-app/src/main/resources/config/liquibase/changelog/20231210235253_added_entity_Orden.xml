@@ -14,10 +14,10 @@
             <column name="id" type="bigint">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="cliente" type="integer">
+            <column name="cliente" type="bigint">
                 <constraints nullable="true" />
             </column>
-            <column name="accion_id" type="integer">
+            <column name="accion_id" type="bigint">
                 <constraints nullable="true" />
             </column>
             <column name="accion" type="varchar(255)">
@@ -26,10 +26,10 @@
             <column name="operacion" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            <column name="precio" type="${floatType}">
+            <column name="precio" type="double">
                 <constraints nullable="true" />
             </column>
-            <column name="cantidad" type="integer">
+            <column name="cantidad" type="bigint">
                 <constraints nullable="true" />
             </column>
             <column name="fecha_operacion" type="varchar(255)">
