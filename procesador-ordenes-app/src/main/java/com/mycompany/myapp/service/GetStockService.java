@@ -6,6 +6,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,6 +16,8 @@ import org.springframework.transaction.annotation.Transactional;
 public class GetStockService {
     
     private final Logger log = LoggerFactory.getLogger(GetStockService.class);
+    @Value("${spring.variables.base_url}")
+    private String base_url;
 
     private HttpRequestService httpRequestService;
 
@@ -23,9 +26,9 @@ public class GetStockService {
     }
 
      public boolean getStock(String codigo, Long id) {
+        String url = base_url + "/acciones/buscar?codigo=" + codigo;
         JSONParser parser = new JSONParser();
         JSONArray acciones;
-        String url = "http://192.168.194.254:8000/api/acciones/buscar?codigo=" + codigo;
 
         ResponseEntity<String> response = httpRequestService.request(url, "GET", null);
 

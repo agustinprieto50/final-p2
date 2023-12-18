@@ -4,6 +4,7 @@ package com.mycompany.myapp.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,14 +23,17 @@ public class GetPendingOrdersService {
 
     private final Logger log = LoggerFactory.getLogger(GetPendingOrdersService.class);
     private final HttpRequestService httpRequestService;
+    
+    @Value("${spring.variables.base_url}")
+    private String base_url;
 
     public GetPendingOrdersService(HttpRequestService httpRequestService) {
         this.httpRequestService = httpRequestService;
     }
 
     public JSONArray getPendingOrders () {
-        // Use JSON.simple to parse the JSON string
-        ResponseEntity<String> response = httpRequestService.request("http://192.168.194.254:8000/api/ordenes/ordenes", "GET", null);
+        String url = base_url + "/ordenes/ordenes";
+        ResponseEntity<String> response = httpRequestService.request(url, "GET", null);
         JSONArray ordersArray;
         try {
             JSONParser parser = new JSONParser();

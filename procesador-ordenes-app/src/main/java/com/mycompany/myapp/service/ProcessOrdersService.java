@@ -75,7 +75,6 @@ public class ProcessOrdersService {
         JSONObject ordersToReport = new JSONObject();
         ordersToReport.put("ordenes", ordersToReportArray);
         reportOrderService.reportOrden(ordersToReport);
-        System.out.println(orders + " ***");
          // aca deberia editar el estado de las ordenes las ordenes
         return orders;
     }

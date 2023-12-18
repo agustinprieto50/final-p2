@@ -96,6 +96,7 @@ spring:
 
   variables:
     api_token: "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqbG9jYW11eiIsImF1dGgiOiJST0xFX1VTRVIiLCJleHAiOjE3MzAzODY3MjF9.KGxtsGFWUDmX5CAcn-zhz1CGQ0zTLU8-XHhvmP4h0TK5FfZpbfcCcbwA3ENXULPpdDxqSaG0cTLsGIHgb7PcyA"
+    base_url: "http://192.168.194.254:8000/api"
 
   profiles:
     # The commented value for `active` can be replaced with valid Spring profiles to load.

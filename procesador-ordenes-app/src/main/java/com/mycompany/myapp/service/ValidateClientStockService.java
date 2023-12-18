@@ -5,6 +5,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,6 +16,8 @@ public class ValidateClientStockService {
 
     private final Logger log = LoggerFactory.getLogger(ValidateClientStockService.class);
     private HttpRequestService httpRequestService;
+    @Value("${spring.variables.base_url}")
+    private String base_url;
 
 
     public ValidateClientStockService(HttpRequestService httpRequestService) {
@@ -22,9 +25,10 @@ public class ValidateClientStockService {
     }
 
     public boolean validateClientStock(Long clienteId, Long accionId, Long cantidad) {
+        String url = base_url + "/reporte-operaciones/consulta_cliente_accion?clienteId=" + clienteId + "&accionId=" + accionId;
+
         JSONParser parser = new JSONParser();
 
-        String url = "http://192.168.194.254:8000/api/reporte-operaciones/consulta_cliente_accion?clienteId=" + clienteId + "&accionId=" + accionId;
         ResponseEntity<String> response = httpRequestService.request(url , "GET", null);
 
         try {
@@ -44,8 +48,5 @@ public class ValidateClientStockService {
             e.printStackTrace();
             return false;
         }
-        
-
     }
-
 }
