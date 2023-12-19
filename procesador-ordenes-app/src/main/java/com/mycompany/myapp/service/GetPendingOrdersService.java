@@ -32,7 +32,7 @@ public class GetPendingOrdersService {
     }
 
     public JSONArray getPendingOrders () {
-        String url = base_url + "/ordenes/ordenes";
+        String url = base_url + "/ordens/procesador"; //profe , aca la mia 
         ResponseEntity<String> response = httpRequestService.request(url, "GET", null);
         JSONArray ordersArray;
         try {

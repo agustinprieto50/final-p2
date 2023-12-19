@@ -58,7 +58,7 @@ public class ProcessNewOrdersService {
 
         // Procesamos las ordenes validadas con modo AHORA
         log.info("Validando ordenes...");
-        JSONArray processedOrders = processOrdersNowService.processOrdersNow(validatedOrders);
+        JSONArray processedOrders = processOrdersNowService.processOrdersNow(validatedOrders); // AHORA con ordenes validadas
         if (! processedOrders.isEmpty()) {
             log.info("Ordenes procesadas en modo AHORA: " + processedOrders.size());
         } else {

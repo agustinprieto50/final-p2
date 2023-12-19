@@ -27,7 +27,7 @@ public class ProcessOrdersService {
     public JSONArray processOrders(JSONArray orders) {
         
         JSONArray ordersToReportArray = new JSONArray();
-        
+        log.debug(orders.toString());
 
         for (Object orden : orders) {
             JSONObject ordenObject = (JSONObject) orden;
