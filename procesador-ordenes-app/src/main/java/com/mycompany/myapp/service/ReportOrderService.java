@@ -16,7 +16,7 @@ public class ReportOrderService {
 
     private final Logger log = LoggerFactory.getLogger(ReportOrderService.class);
     private final HttpRequestService httpRequestService;
-    @Value("${spring.variables.base_url}")
+    @Value("${spring.variables.base_url_catedra}")
     private String base_url;
 
     @Value("${spring.variables.api_token_catedra}")

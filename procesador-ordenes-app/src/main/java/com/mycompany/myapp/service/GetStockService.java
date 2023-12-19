@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class GetStockService {
     
     private final Logger log = LoggerFactory.getLogger(GetStockService.class);
-    @Value("${spring.variables.base_url}")
+    @Value("${spring.variables.base_url_catedra}")
     private String base_url;
 
     @Value("${spring.variables.api_token_catedra}")

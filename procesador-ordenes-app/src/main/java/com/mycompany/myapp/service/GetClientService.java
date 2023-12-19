@@ -14,7 +14,7 @@ public class GetClientService {
 
     private final Logger log = LoggerFactory.getLogger(GetClientService.class);
 
-    @Value("${spring.variables.base_url}")
+    @Value("${spring.variables.base_url_catedra}")
     private String base_url;
 
     private HttpRequestService httpRequestService;
