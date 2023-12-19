@@ -18,6 +18,8 @@ public class GetClientService {
     private String base_url;
 
     private HttpRequestService httpRequestService;
+    @Value("${spring.variables.api_token_catedra}")
+    private String token;
 
     public GetClientService(HttpRequestService httpRequestService) {
         this.httpRequestService = httpRequestService;
@@ -25,11 +27,11 @@ public class GetClientService {
 
     public boolean getClient(Long id) {
         String url = base_url + "/clientes/" + id;
-        ResponseEntity<String> response = httpRequestService.request(url, "GET", null);
+        ResponseEntity<String> response = httpRequestService.request(url, "GET", null, token);
         int status = response.getStatusCodeValue();
         if (status == 200) {
             return true;
-        } else {
+        } else { 
             return false;
         }
     } 

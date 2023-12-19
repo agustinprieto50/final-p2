@@ -19,6 +19,9 @@ public class ValidateClientStockService {
     @Value("${spring.variables.base_url}")
     private String base_url;
 
+    @Value("${spring.variables.api_token_catedra}")
+    private String token;
+
 
     public ValidateClientStockService(HttpRequestService httpRequestService) {
         this.httpRequestService = httpRequestService;
@@ -29,7 +32,7 @@ public class ValidateClientStockService {
 
         JSONParser parser = new JSONParser();
 
-        ResponseEntity<String> response = httpRequestService.request(url , "GET", null);
+        ResponseEntity<String> response = httpRequestService.request(url , "GET", null, token);
 
         try {
             JSONObject responseObject = (JSONObject) parser.parse(response.getBody());

@@ -27,13 +27,16 @@ public class GetPendingOrdersService {
     @Value("${spring.variables.base_url}")
     private String base_url;
 
+    @Value("${spring.variables.api_token_generador}")
+    private String token;
+
     public GetPendingOrdersService(HttpRequestService httpRequestService) {
         this.httpRequestService = httpRequestService;
     }
 
     public JSONArray getPendingOrders () {
         String url = base_url + "/ordens/procesador"; //profe , aca la mia 
-        ResponseEntity<String> response = httpRequestService.request(url, "GET", null);
+        ResponseEntity<String> response = httpRequestService.request(url, "GET", null, token);
         JSONArray ordersArray;
         try {
             JSONParser parser = new JSONParser();

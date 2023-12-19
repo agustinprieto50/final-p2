@@ -20,16 +20,15 @@ public class HttpRequestService {
     private final Logger log = LoggerFactory.getLogger(HttpRequestService.class);
     private final RestTemplate restTemplate;
 
-    @Value("${spring.variables.api_token}")
-    private String token;
+    
 
     public HttpRequestService(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
 
-    public ResponseEntity<String> request(String url, String method, String body) {
+    public ResponseEntity<String> request(String url, String method, String body, String token) {
         HttpHeaders headers = new HttpHeaders();
-        headers.setBearerAuth(this.token);
+        headers.setBearerAuth(token);
         headers.setContentType(MediaType.APPLICATION_JSON);
 
         HttpMethod httpMethod;

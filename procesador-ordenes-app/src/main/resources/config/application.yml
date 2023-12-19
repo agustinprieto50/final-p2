@@ -95,7 +95,7 @@ spring:
     name: final_p2
 
   variables:
-    api_token: "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqbG9jYW11eiIsImF1dGgiOiJST0xFX1VTRVIiLCJleHAiOjE3MzE1MTI5MTJ9.XpElpohwU_Ktw0wooR51lmotn9wBKdoAOzdngKeUspmqtqhBD2OazwpYGty1Vh7tmTE41hnGn9I_cs3XioxJXQ"
+    api_token_catedra: "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqbG9jYW11eiIsImF1dGgiOiJST0xFX1VTRVIiLCJleHAiOjE3MzE1MTI5MTJ9.XpElpohwU_Ktw0wooR51lmotn9wBKdoAOzdngKeUspmqtqhBD2OazwpYGty1Vh7tmTE41hnGn9I_cs3XioxJXQ"
     api_token_generador: "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcwNDgxMDQwOSwiYXV0aCI6IlJPTEVfQURNSU4gUk9MRV9VU0VSIiwiaWF0IjoxNzAyMjE4NDA5fQ.0CSWOJxFJHTTpdG9Q6nkBTQxYkNDnMWSrFamj-C_ZY8ap4abderRWRsGQbyxtZUCMAaZ4UXWr12PP_IL5s2nnw"
     base_url: "http://generador:8080/api"
 

@@ -19,6 +19,9 @@ public class GetStockService {
     @Value("${spring.variables.base_url}")
     private String base_url;
 
+    @Value("${spring.variables.api_token_catedra}")
+    private String token;
+
     private HttpRequestService httpRequestService;
 
     public GetStockService(HttpRequestService httpRequestService) {
@@ -30,7 +33,7 @@ public class GetStockService {
         JSONParser parser = new JSONParser();
         JSONArray acciones;
 
-        ResponseEntity<String> response = httpRequestService.request(url, "GET", null);
+        ResponseEntity<String> response = httpRequestService.request(url, "GET", null, token);
 
         try {
             JSONObject responseObject = (JSONObject) parser.parse(response.getBody());

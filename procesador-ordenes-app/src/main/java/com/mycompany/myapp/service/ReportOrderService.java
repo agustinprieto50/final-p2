@@ -19,6 +19,9 @@ public class ReportOrderService {
     @Value("${spring.variables.base_url}")
     private String base_url;
 
+    @Value("${spring.variables.api_token_catedra}")
+    private String token;
+
     public ReportOrderService(HttpRequestService httpRequestService) {
         this.httpRequestService = httpRequestService;
     } 
@@ -26,7 +29,7 @@ public class ReportOrderService {
     public boolean reportOrden(JSONObject body) {
         String url = base_url + "/reporte-operaciones/reportar";
         // parametrizar urls
-        ResponseEntity<String> response = httpRequestService.request(url, "POST", body.toString());
+        ResponseEntity<String> response = httpRequestService.request(url, "POST", body.toString(), token);
         int status = response.getStatusCodeValue();
         if (status == 200) {
             return true;
