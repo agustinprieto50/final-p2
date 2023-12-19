@@ -24,8 +24,8 @@ class ReportesResourceIT {
     public void setUp() {
         MockitoAnnotations.openMocks(this);
 
-        ReportesResource reportesResource = new ReportesResource();
-        restMockMvc = MockMvcBuilders.standaloneSetup(reportesResource).build();
+        // ReportesResource reportesResource = new ReportesResource();
+        // restMockMvc = MockMvcBuilders.standaloneSetup(reportesResource).build();
     }
 
     /**

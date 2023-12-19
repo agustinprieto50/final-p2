@@ -55,7 +55,19 @@ public class ReportesResource {
      * GET ordenesNoProcesadas
      */
     @GetMapping("/ordenes-no-procesadas")
-    public String ordenesNoProcesadas() {
-        return "ordenesNoProcesadas";
+    public List<Orden> ordenesNoProcesadas(@RequestParam(required = false) Long cliente,
+                                         @RequestParam(required = false) String accion,
+                                         @RequestParam(required = false) String fecha) {
+        
+        List<Orden> allOrdens = ordenRepository.findAll();
+        log.debug(allOrdens.toString());
+
+        log.info("REST request to get all Ordens");
+        return allOrdens.stream()
+                .filter(ord -> cliente == null || ord.getCliente().equals(cliente))
+                .filter(ord -> accion == null || ord.getAccion().equals(accion))
+                .filter(ord -> fecha == null || ord.getFechaOperacion().equals(fecha))
+                .filter(ord -> ord.getEstado().equals("scheduled") || ord.getEstado().equals("hasErrors"))
+                .collect(Collectors.toList());
     }
 }
