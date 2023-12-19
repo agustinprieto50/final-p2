@@ -47,7 +47,7 @@ spring:
 
 server:
   port: 10344
-  address: localhost
+  address: 0.0.0.0
 
 # ===================================================================
 # JHipster specific properties

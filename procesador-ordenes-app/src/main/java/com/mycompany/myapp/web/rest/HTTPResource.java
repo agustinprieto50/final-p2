@@ -1,10 +1,8 @@
 package com.mycompany.myapp.web.rest;
 
 
-import java.time.LocalTime;
 
 import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;

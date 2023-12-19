@@ -53,7 +53,6 @@ public class ProcessOrdersService {
             ordenToReport.put("modo", modo);
     
             if (operacion.equals("VENTA")) {
-                System.out.println("HERE");
                 enoughStocks = validateClientStockService.validateClientStock(clienteId, accionId, cantidad);
                 if (enoughStocks) {
                     ordenToReport.put("operacionExitosa", true);

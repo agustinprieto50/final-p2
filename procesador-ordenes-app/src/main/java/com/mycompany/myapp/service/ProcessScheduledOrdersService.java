@@ -8,6 +8,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -30,9 +31,15 @@ public class ProcessScheduledOrdersService {
         this.updateScheduledOrdersService = updateScheduledOrdersService;
     }
 
+    @Scheduled(cron = "0 9,18 * * 1-5 *")
     public JSONArray processScheduledOrders() {
+        log.info("Procesador de ordenes programadas en ejecucion");
+        
+        log.info("Buscando ordenes programadas en la base de datos...");
         JSONArray scheduledOrdersArray = getScheduledOrdersService.getScheduledOrders();
-        System.out.println(scheduledOrdersArray + " ***");
+        log.info("Cantidad de ordenes programadas: " + scheduledOrdersArray.size());
+        log.info("Ordenes programadas: " + scheduledOrdersArray);
+
         JSONArray ordersToProcess = new JSONArray();
 
         // Array de IDs para actualizar las ordenes DB
@@ -45,21 +52,22 @@ public class ProcessScheduledOrdersService {
             JSONObject orderObject = (JSONObject) orden;
             String modo = (String) orderObject.get("modo");
 
-            if ( (modo.equals("PRINCIPIODIA") || modo.equals("AHORA")) ) {
+            if ( (modo.equals("PRINCIPIODIA") || modo.equals("AHORA")) && currentHour == 9) {
                 ordersToProcess.add(orderObject);
                 ids.add((Long) orderObject.get("id"));
             }
 
-            if ( modo.equals("FINDIA")) {
+            if ( modo.equals("FINDIA")  && currentHour == 18) {
                 ordersToProcess.add(orderObject);
                 ids.add((Long) orderObject.get("id"));
-
             }
         }
         
         updateScheduledOrdersService.updateScheduledOrders(ids);
 
+        log.info("Procesando ordenes...");
         JSONArray processedOrders = processOrdersService.processOrders(ordersToProcess);
+        log.info("Ordenes procesadas: " + processedOrders.size());
 
         return processedOrders;
 

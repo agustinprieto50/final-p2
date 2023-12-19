@@ -40,7 +40,6 @@ public class GetStockService {
                 JSONObject accionObject = (JSONObject) accion;
                 Long accionId = (Long) accionObject.get("id");
                 String accionCodigo = (String) accionObject.get("codigo");
-                System.out.println(accionCodigo + codigo + " " + accionId + id);
 
                 if (accionId == id && accionCodigo.equals(codigo)) {
                     return true;

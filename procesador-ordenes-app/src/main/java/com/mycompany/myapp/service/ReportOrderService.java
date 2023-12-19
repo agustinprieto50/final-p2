@@ -25,7 +25,6 @@ public class ReportOrderService {
 
     public boolean reportOrden(JSONObject body) {
         String url = base_url + "/reporte-operaciones/reportar";
-        System.out.println(body + " BODY");
         // parametrizar urls
         ResponseEntity<String> response = httpRequestService.request(url, "POST", body.toString());
         int status = response.getStatusCodeValue();

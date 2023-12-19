@@ -24,8 +24,8 @@ class HTTPResourceIT {
     public void setUp() {
         MockitoAnnotations.openMocks(this);
 
-        HTTPResource hTTPResource = new HTTPResource();
-        restMockMvc = MockMvcBuilders.standaloneSetup(hTTPResource).build();
+        // HTTPResource hTTPResource = new HTTPResource();
+        // restMockMvc = MockMvcBuilders.standaloneSetup(hTTPResource).build();
     }
 
     /**
