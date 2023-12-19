@@ -16,7 +16,7 @@ public class ValidateClientStockService {
 
     private final Logger log = LoggerFactory.getLogger(ValidateClientStockService.class);
     private HttpRequestService httpRequestService;
-    @Value("${spring.variables.base_url}")
+    @Value("${spring.variables.base_url_catedra}")
     private String base_url;
 
     @Value("${spring.variables.api_token_catedra}")

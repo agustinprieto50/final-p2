@@ -19,9 +19,6 @@ public class ValidatePendingOrdersService {
     private final OrdersValidationResultService ordersValidationResultService;
 
 
-    @Value("${spring.variables.api_token}")
-    private String token;
-
     public ValidatePendingOrdersService(
             GetClientService getClientService,
             GetStockService getStockService,

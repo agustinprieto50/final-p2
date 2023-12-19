@@ -95,9 +95,10 @@ spring:
     name: final_p2
 
   variables:
-    api_token_catedra: 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqbG9jYW11eiIsImF1dGgiOiJST0xFX1VTRVIiLCJleHAiOjE3MzI4NzI3NTl9.OgjxixX5qH7oFPDT-K2LcFrwsR6i0pEMVksrC5F4_nc9ldC-LcJyxdxSLO0BSirW2Hb611PwCudCiVtcD6JCbA'
+    api_token_catedra: "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqbG9jYW11eiIsImF1dGgiOiJST0xFX1VTRVIiLCJleHAiOjE3MzE1MTI5MTJ9.XpElpohwU_Ktw0wooR51lmotn9wBKdoAOzdngKeUspmqtqhBD2OazwpYGty1Vh7tmTE41hnGn9I_cs3XioxJXQ"
     api_token_generador: "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcwNDgxMDQwOSwiYXV0aCI6IlJPTEVfQURNSU4gUk9MRV9VU0VSIiwiaWF0IjoxNzAyMjE4NDA5fQ.0CSWOJxFJHTTpdG9Q6nkBTQxYkNDnMWSrFamj-C_ZY8ap4abderRWRsGQbyxtZUCMAaZ4UXWr12PP_IL5s2nnw"
     base_url: "http://generador:8080/api"
+    base_url_catedra: "http://192.168.194.254:8000/api"
 
   profiles:
     # The commented value for `active` can be replaced with valid Spring profiles to load.

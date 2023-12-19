@@ -35,7 +35,7 @@ public class ProcessNewOrdersService {
         this.processOrdersNowService = processOrdersNowService;
     }
 
-    @Scheduled(cron = "0 * * * * 1-5")
+    //@Scheduled(cron = "0 * * * * 1-5")
     public JSONArray processNewOrders() {
         log.info("Procesador de nuevas Ordenes en ejecucion");
 
