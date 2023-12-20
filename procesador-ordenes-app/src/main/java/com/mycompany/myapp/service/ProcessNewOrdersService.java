@@ -35,7 +35,7 @@ public class ProcessNewOrdersService {
         this.processOrdersNowService = processOrdersNowService;
     }
 
-    //@Scheduled(cron = "0 * * * * 1-5")
+    @Scheduled(cron = "0 * * * * 1-5")
     public JSONArray processNewOrders() {
         log.info("Procesador de nuevas Ordenes en ejecucion");
 
@@ -60,7 +60,9 @@ public class ProcessNewOrdersService {
         log.info("Validando ordenes...");
         JSONArray processedOrders = processOrdersNowService.processOrdersNow(validatedOrders); // AHORA con ordenes validadas
         if (! processedOrders.isEmpty()) {
-            log.info("Ordenes procesadas en modo AHORA: " + processedOrders.size());
+            log.info("Catidad de ordenes procesadas en modo AHORA: " + processedOrders.size());
+            log.info("Ordenes procesadas en modo AHORA: " + processedOrders);
+
         } else {
             log.info("Ninguna orden fue procesada");
         }

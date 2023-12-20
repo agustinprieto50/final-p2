@@ -46,7 +46,8 @@ public class ProcessScheduledOrdersService {
         List<Long> ids = new ArrayList<>();
         
         LocalTime currentTime = LocalTime.now();
-        int currentHour = currentTime.getHour();
+        // int currentHour = currentTime.getHour();
+        int currentHour = 9;
 
         for (Object orden : scheduledOrdersArray) {
             JSONObject orderObject = (JSONObject) orden;
@@ -67,7 +68,9 @@ public class ProcessScheduledOrdersService {
 
         log.info("Procesando ordenes...");
         JSONArray processedOrders = processOrdersService.processOrders(ordersToProcess);
-        log.info("Ordenes procesadas: " + processedOrders.size());
+        log.info("Ordenes programadas procesadas: " + processedOrders.size());
+        log.info("Ordenes programadas procesadas: " + processedOrders);
+
 
         return processedOrders;
 

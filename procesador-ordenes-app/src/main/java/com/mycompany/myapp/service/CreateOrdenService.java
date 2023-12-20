@@ -1,5 +1,7 @@
 package com.mycompany.myapp.service;
 
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,7 +40,13 @@ public class CreateOrdenService {
             orden.setOperacion( (String) ordenObject.get("operacion"));
             orden.setPrecio( (Double) ordenObject.get("precio"));
             orden.setCantidad( (Long) ordenObject.get("cantidad"));
-            orden.setFechaOperacion( (String) ordenObject.get("fechaOperacion"));
+
+            String fecha = (String) ordenObject.get("fechaOperacion");
+            ZonedDateTime zonedDateTime = ZonedDateTime.parse(fecha, DateTimeFormatter.ISO_OFFSET_DATE_TIME);
+
+            String outputDateString = zonedDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'"));
+
+            orden.setFechaOperacion(outputDateString);
             orden.setModo( (String) ordenObject.get("modo"));
             orden.setEstado( (String) ordenObject.get("status"));
 

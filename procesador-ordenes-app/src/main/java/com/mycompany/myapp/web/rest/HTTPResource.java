@@ -35,26 +35,17 @@ public class HTTPResource {
      */
     @GetMapping("/app")
     public JSONArray app() {
-
         JSONArray processedOrders = processNewOrdersService.processNewOrders();
-
         return processedOrders;
     }
 
     /**
-     * GET getAccion
+     * GET processScheduledOrders
      */
     @GetMapping("/process-scheduled-orders")
-    public void processScheduledOrders() {
-        processScheduledOrdersService.processScheduledOrders();
+    public JSONArray processScheduledOrders() {
+        JSONArray processedOrders = processScheduledOrdersService.processScheduledOrders();
+        return processedOrders;
     }
-
-    /**
-     * GET getCliente
-     */
-    @GetMapping("/get-cliente")
-    @ResponseBody
-    public String getCliente() {
-        return "getCLiente";
-    }
+    
 }

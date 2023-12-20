@@ -35,7 +35,6 @@ class ValidatePendingOrdersIT {
 
     @Test
     void testValidatePendingOrders() {
-        // Create the test data (ordersArray)
         JSONArray ordersArray = new JSONArray();
         JSONObject order1 = createOrder(26351L, 13L, "PAM", "COMPRA", 127.78, 20, "2023-12-20T04:00:00Z", "PRINCIPIODIA");
         JSONObject order2 = createOrder(26351L, 13L, "PAM", "COMPRA", 119.17, 32, "2023-12-20T12:00:00Z", "AHORA");
