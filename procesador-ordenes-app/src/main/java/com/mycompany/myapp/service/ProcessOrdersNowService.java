@@ -54,7 +54,6 @@ public class ProcessOrdersNowService {
         // Llama al metodo que procesa y reporta las ordenes
         JSONArray processedOrders = processOrdersService.processOrders(ordersToProcess);
 
-
         return processedOrders;
     }
 }

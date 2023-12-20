@@ -7,6 +7,7 @@ import com.mycompany.myapp.IntegrationTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockitoAnnotations;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
@@ -16,6 +17,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
  * @see HTTPResource
  */
 @IntegrationTest
+@SpringBootTest
 class HTTPResourceIT {
 
     private MockMvc restMockMvc;
@@ -24,14 +26,15 @@ class HTTPResourceIT {
     public void setUp() {
         MockitoAnnotations.openMocks(this);
 
-        // HTTPResource hTTPResource = new HTTPResource();
-        // restMockMvc = MockMvcBuilders.standaloneSetup(hTTPResource).build();
+        HTTPResource hTTPResource = new HTTPResource();
+        restMockMvc = MockMvcBuilders.standaloneSetup(hTTPResource).build();
     }
 
     /**
      * Test getOrder
      */
     @Test
+    
     void testGetOrder() throws Exception {
         restMockMvc.perform(get("/api/http/get-order")).andExpect(status().isOk());
     }

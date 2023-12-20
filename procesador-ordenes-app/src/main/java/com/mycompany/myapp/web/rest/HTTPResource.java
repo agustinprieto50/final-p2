@@ -5,6 +5,7 @@ package com.mycompany.myapp.web.rest;
 import org.json.simple.JSONArray;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -21,16 +22,12 @@ import com.mycompany.myapp.service.ProcessScheduledOrdersService;
 public class HTTPResource {
 
     private final Logger log = LoggerFactory.getLogger(HTTPResource.class);
+    
+    @Autowired
     private ProcessNewOrdersService processNewOrdersService;
-    private ProcessScheduledOrdersService processScheduledOrdersService;
 
-    public HTTPResource(
-        ProcessNewOrdersService processNewOrdersService,
-        ProcessScheduledOrdersService processScheduledOrdersService
-        ) {
-        this.processNewOrdersService = processNewOrdersService;
-        this.processScheduledOrdersService = processScheduledOrdersService;
-        }
+    @Autowired
+    private ProcessScheduledOrdersService processScheduledOrdersService;
 
 
     /**

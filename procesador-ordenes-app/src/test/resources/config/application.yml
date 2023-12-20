@@ -26,6 +26,8 @@ spring:
     host: localhost
   main:
     allow-bean-definition-overriding: true
+    lazy-initialization: true
+
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher

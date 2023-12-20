@@ -7,6 +7,7 @@ import com.mycompany.myapp.IntegrationTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockitoAnnotations;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
@@ -16,6 +17,8 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
  * @see ReportesResource
  */
 @IntegrationTest
+@SpringBootTest
+
 class ReportesResourceIT {
 
     private MockMvc restMockMvc;
