@@ -67,16 +67,12 @@ public class ValidatePendingOrdersService {
     }
 
     private String formatDate(String rawDate) {
-        // Define the input formatter
         DateTimeFormatter inputFormatter = DateTimeFormatter.ISO_OFFSET_DATE_TIME;
 
-        // Parse the input string
         OffsetDateTime offsetDateTime = OffsetDateTime.parse(rawDate, inputFormatter);
 
-        // Define the output formatter
         DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'");
 
-        // Format the date to the desired output format
         String outputDateString = offsetDateTime
                 .truncatedTo(java.time.temporal.ChronoUnit.SECONDS) // Truncate milliseconds
                 .format(outputFormatter);

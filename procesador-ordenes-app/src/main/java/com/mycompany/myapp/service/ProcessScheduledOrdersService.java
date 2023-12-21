@@ -3,18 +3,29 @@ package com.mycompany.myapp.service;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import com.mycompany.myapp.repository.OrdenRepository;
+
+import com.mycompany.myapp.domain.Orden;
 
 @Service
 @Transactional
 public class ProcessScheduledOrdersService {
+
+    @Autowired
+    private GetValorActual getValorActual;
+
+    @Autowired
+    private OrdenRepository ordenRepository;
 
     private final Logger log = LoggerFactory.getLogger(ProcessScheduledOrdersService.class);
     private GetScheduledOrdersService getScheduledOrdersService;
@@ -49,16 +60,29 @@ public class ProcessScheduledOrdersService {
         // int currentHour = currentTime.getHour();
         int currentHour = 9;
 
+        // buscar el precio actual
+
         for (Object orden : scheduledOrdersArray) {
             JSONObject orderObject = (JSONObject) orden;
             String modo = (String) orderObject.get("modo");
+            String codigo = (String) orderObject.get("accion");
+            Double precioActual = getValorActual.getValorActual(codigo);
+            Long id = (Long) orderObject.get("id");
+            Optional<Orden> order = ordenRepository.findById(id);
+            Orden o = order.get();
 
-            if ( (modo.equals("PRINCIPIODIA") || modo.equals("AHORA")) && currentHour == 9) {
+            if ( (modo.equals("PRINCIPIODIA") || modo.equals("AHORA"))) {
+                
+                o.setPrecio(precioActual);
+                ordenRepository.save(o);
+                orderObject.put("precio", precioActual);
                 ordersToProcess.add(orderObject);
-                ids.add((Long) orderObject.get("id"));
+                ids.add(id);
             }
 
-            if ( modo.equals("FINDIA")  && currentHour == 18) {
+            if ( modo.equals("FINDIA")) {
+                orderObject.put("precio", precioActual);
+                ordersToProcess.add(orderObject);
                 ordersToProcess.add(orderObject);
                 ids.add((Long) orderObject.get("id"));
             }

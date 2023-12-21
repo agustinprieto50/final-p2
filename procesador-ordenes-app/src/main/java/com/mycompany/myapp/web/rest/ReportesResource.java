@@ -1,6 +1,10 @@
 package com.mycompany.myapp.web.rest;
 
+import java.time.DateTimeException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
@@ -36,8 +40,9 @@ public class ReportesResource {
      */
     @GetMapping("/ordenes-procesadas")
     public List<Orden> ordenesProcesadas(@RequestParam(required = false) Long cliente,
-                                         @RequestParam(required = false) String accion,
-                                         @RequestParam(required = false) String fecha) {
+                                        @RequestParam(required = false) String accion,
+                                        @RequestParam(required = false) String fechaInicio,
+                                        @RequestParam(required = false) String fechaFin) {
         
         List<Orden> allOrdens = ordenRepository.findAll();
         log.debug(allOrdens.toString());
@@ -46,11 +51,33 @@ public class ReportesResource {
         return allOrdens.stream()
                 .filter(ord -> cliente == null || ord.getCliente().equals(cliente))
                 .filter(ord -> accion == null || ord.getAccion().equals(accion))
-                .filter(ord -> fecha == null || ord.getFechaOperacion().equals(fecha))
+                .filter(ord -> isWithinDateRange(ord.getFechaOperacion(), fechaInicio, fechaFin))
                 .filter(ord -> ord.getEstado().equals("operacionExitosa"))
                 .collect(Collectors.toList());
     }
 
+    private boolean isWithinDateRange(String orderDate, String startDate, String endDate) {
+        if (orderDate == null) {
+            return false;
+        }
+
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME;
+
+            ZonedDateTime zonedOrderDate = ZonedDateTime.parse(orderDate, formatter);
+
+            ZonedDateTime zonedStartDate = startDate != null && !startDate.isEmpty() ? ZonedDateTime.parse(startDate, formatter) : null;
+            ZonedDateTime zonedEndDate = endDate != null && !endDate.isEmpty() ? ZonedDateTime.parse(endDate, formatter) : null;
+
+            return (zonedStartDate == null || zonedOrderDate.isEqual(zonedStartDate) || zonedOrderDate.isAfter(zonedStartDate))
+                    && (zonedEndDate == null || zonedOrderDate.isEqual(zonedEndDate) || zonedOrderDate.isBefore(zonedEndDate.plusDays(1)));
+        } catch (DateTimeException e) {
+            log.info("Error parsing date: " + e.getMessage());
+            return false;
+        }
+    }
+
+    // Logger instance for logging
     /**
      * GET ordenesNoProcesadas
      */
