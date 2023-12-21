@@ -40,6 +40,7 @@ public class ProcessOrdersNowService {
                 LocalTime currentTime = LocalTime.now();
                 int currentHour = currentTime.getHour();
                 boolean isBetween9And6 = currentHour >= 9 && currentHour < 18;
+                // boolean isBetween9And6 = true;
                 if (isBetween9And6) {
                     ordersToProcess.add(orden);
                 } else {
@@ -51,6 +52,7 @@ public class ProcessOrdersNowService {
             }
         }
         createOrdenService.saveAllFromJsonArray(ordersToSaveNow);
+        log.info("Las siguientes ordenes han sido programadas:" + ordersToSaveNow);
         // Llama al metodo que procesa y reporta las ordenes
         JSONArray processedOrders = processOrdersService.processOrders(ordersToProcess);
 

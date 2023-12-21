@@ -1,5 +1,9 @@
 package com.mycompany.myapp.service;
 
+import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.slf4j.Logger;
@@ -36,6 +40,14 @@ public class ValidatePendingOrdersService {
         for (Object orden : ordersArray) {
             JSONObject ordenObject = (JSONObject) orden;
 
+            String rawDate = (String) ordenObject.get("fechaOperacion");
+            
+            String formattedDate = this.formatDate(rawDate);
+
+            log.info(formattedDate + "HERE");
+
+            ordenObject.put("fechaOperacion",formattedDate);
+
             Long clienteId = (Long) ordenObject.get("cliente");
             String accionCodigo = (String) ordenObject.get("accion");
             Long accionId = (Long) ordenObject.get("accionId");
@@ -52,5 +64,23 @@ public class ValidatePendingOrdersService {
             }
         }
         return new OrdersValidationResultService(validatedOrders, incompleteOrders);
+    }
+
+    private String formatDate(String rawDate) {
+        // Define the input formatter
+        DateTimeFormatter inputFormatter = DateTimeFormatter.ISO_OFFSET_DATE_TIME;
+
+        // Parse the input string
+        OffsetDateTime offsetDateTime = OffsetDateTime.parse(rawDate, inputFormatter);
+
+        // Define the output formatter
+        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'");
+
+        // Format the date to the desired output format
+        String outputDateString = offsetDateTime
+                .truncatedTo(java.time.temporal.ChronoUnit.SECONDS) // Truncate milliseconds
+                .format(outputFormatter);
+
+        return outputDateString;
     }
 }

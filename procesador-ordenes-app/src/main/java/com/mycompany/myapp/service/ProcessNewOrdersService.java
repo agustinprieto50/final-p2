@@ -64,7 +64,7 @@ public class ProcessNewOrdersService {
             log.info("Ordenes procesadas en modo AHORA: " + processedOrders);
 
         } else {
-            log.info("Ninguna orden fue procesada");
+            log.info("Ninguna orden fue procesada por el momento.");
         }
 
         // Guardamos en la base de datos las ordenes procesadas
