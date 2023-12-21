@@ -32,7 +32,6 @@ public class CreateOrdenService {
         for (Object object : ordenes) {
             JSONObject ordenObject = (JSONObject) object;
 
-            // Extract values from the JSONObject and create a new Orden object
             Orden orden = new Orden();
             orden.setCliente( (Long) ordenObject.get("cliente"));
             orden.setAccionId( (Long) ordenObject.get("accionId"));
@@ -40,18 +39,11 @@ public class CreateOrdenService {
             orden.setOperacion( (String) ordenObject.get("operacion"));
             orden.setPrecio( (Double) ordenObject.get("precio"));
             orden.setCantidad( (Long) ordenObject.get("cantidad"));
-
-            String fecha = (String) ordenObject.get("fechaOperacion");
-            ZonedDateTime zonedDateTime = ZonedDateTime.parse(fecha, DateTimeFormatter.ISO_OFFSET_DATE_TIME);
-
-            String outputDateString = zonedDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'"));
-
-            orden.setFechaOperacion(outputDateString);
+            orden.setFechaOperacion( (String) ordenObject.get("fechaOperacion"));
             orden.setModo( (String) ordenObject.get("modo"));
             orden.setEstado( (String) ordenObject.get("status"));
 
 
-            // Set other fields accordingly...
 
             ordenList.add(orden);
         }
